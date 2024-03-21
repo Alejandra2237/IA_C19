@@ -9,20 +9,46 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">  
     <link rel="stylesheet" href="style.css">
-    <title>Script de la clase diecisiete</title>
+    <title>Script de la clase diecinueve</title>
 </head>
 <body>
     <center>
-    <h1>Script de Actividad Uno del Alumno</h1>
+    <h1>Script de Actividad del Alumno</h1>
     <hr>
-    <h3>Script para agregar etiquetas</h3>
+    <h3>Script para dibujar personaje</h3>
     <textarea cols='80' rows='13' id="codigo">
-    var label = `${results[0].label}
-              ${nf(100*results[0].confidence, 2, 1)}%<br/>
-              ${results[1].label}
-              ${nf(100*results[1].confidence, 2, 1)}%`;
+    recognizer.predict();
+  var score0 = recognizer.classes[0].score;
+  var score1 = recognizer.classes[1].score;
   
-  resultsDiv.html(label);
+  if (score0 > score1) {
+    circleVar.x = circleVar.x + 1;
+  }
+  
+  background('white');
+  fill(255,182,193);
+  circle(circleVar.x, circleVar.y, 100);
+  
+  fill(255,255,255)
+  circle(circleVar.x-20, circleVar.y-10, 20);
+  circle(circleVar.x+20, circleVar.y-10, 20);
+  fill(0,0,0)
+  circle(circleVar.x-15, circleVar.y-10, 10);
+  circle(circleVar.x+25, circleVar.y-10, 10);
+  
+  fill(255,182,193);
+  if (score0 > score1) {
+    arc(circleVar.x, circleVar.y+10, 30, 30, 0, Math.PI);
+  } else {
+    arc(circleVar.x, circleVar.y+20, 30, 30, Math.PI, Math.PI*2);
+  }
+  
+  if (circleVar.x > 500) {
+    background('white');
+    fill(0);
+    textSize(50);
+    text('Game Over!', 100, 200)
+  }
         </textarea><br>
         <button type="button" id="copyClip" data-clipboard-target="#codigo">Copiar</button>
         <script src="clipboard.min.js"></script>
